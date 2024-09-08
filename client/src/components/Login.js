@@ -20,7 +20,7 @@ export default function Login(props) {
     setIsLoading(true);
     setError({
       email: "",
-      passowrd: "",
+      password: "",
     });
 
     const res = await fetch("/user/login", {
@@ -33,7 +33,6 @@ export default function Login(props) {
     const data = await res.json();
     if (data.errors) {
       setError(data.errors);
-      console.log(error);
       setIsLoading(false);
     } else {
       setIsLoading(false);
@@ -44,14 +43,14 @@ export default function Login(props) {
 
   return (
     <div>
-      <div className="p-6 bg-violet-200 text-rp-black rounded-xl font-lexend">
-        <h1 className="font-bold text-2xl ">Log In</h1>
-        <p className="">Please Log in to account to manage expenses</p>
-        <hr className="my-4 "></hr>
+      <div className="p-6 bg-white text-black rounded-xl font-lexend shadow-lg">
+        <h1 className="font-bold text-2xl text-blue-600">Log In</h1>
+        <p className="text-gray-600">Please log in to manage your expenses</p>
+        <hr className="my-4 border-gray-300"></hr>
         <div className="grid grid-cols-12">
           <label
             htmlFor="email"
-            className="font-bold flex items-center col-span-4"
+            className="font-bold flex items-center col-span-4 text-blue-600"
           >
             Email
           </label>
@@ -64,7 +63,7 @@ export default function Login(props) {
               setUser(tempUser);
             }}
             placeholder="Enter Email"
-            className="p-2 m-2 inline-block outline-none  col-span-8 bg-violet-100 rounded-sm placeholder-[#fc7b54]"
+            className="p-2 m-2 inline-block outline-none col-span-8 bg-blue-100 rounded-sm placeholder-gray-500"
           />
           <span className="text-sm text-red-500 col-start-5 col-span-8">
             {error.email}
@@ -74,7 +73,7 @@ export default function Login(props) {
         <div className="grid grid-cols-12 ">
           <label
             htmlFor="password"
-            className="font-bold flex items-center col-span-4"
+            className="font-bold flex items-center col-span-4 text-blue-600"
           >
             Password
           </label>
@@ -88,7 +87,7 @@ export default function Login(props) {
             }}
             placeholder="Enter Password"
             name="password"
-            className="p-2 m-2 inline-block outline-none  col-span-8 bg-violet-100 rounded-sm placeholder-[#fc7b54]"
+            className="p-2 m-2 inline-block outline-none col-span-8 bg-blue-100 rounded-sm placeholder-gray-500"
           ></input>
           <span className="text-sm text-red-500 col-start-5 col-span-8">
             {error.password}
@@ -98,23 +97,23 @@ export default function Login(props) {
           {isLoading ? (
             <ReactLoading
               type="bubbles"
-              color="#F5A302"
+              color="#007BFF"
               height={50}
               width={50}
             />
           ) : (
             <button
               onClick={handleLogin}
-              className="font-bold py-3 px-6 rounded-xl border-2 border-[#fc7b54] text-[#fc7b54] hover:border-rp-black hover:text-rp-black hover:bg-[#fc7b54] hover:scale-110 transition delay-150 duration-200"
+              className="font-bold py-3 px-6 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition-all duration-200"
             >
               Login
             </button>
           )}
         </div>
         <span className="flex justify-center py-2">
-          <span className="pr-1">Don't have an account , </span>
+          <span className="pr-1">Don't have an account?</span>
           <span
-            className="text-[#fc7b54] cursor-pointer"
+            className="text-blue-600 cursor-pointer hover:underline"
             onClick={() => {
               props.closeModalLogin();
               props.openModalSignup();

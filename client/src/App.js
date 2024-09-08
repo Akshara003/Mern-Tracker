@@ -29,6 +29,7 @@ function App() {
 
   const [deleteId, setDeleteId] = useState();
 
+  // Modal Open/Close Functions
   function openModalContact() {
     setIsOpenContact(true);
   }
@@ -44,6 +45,7 @@ function App() {
   function closeModalConfirm() {
     setIsOpenConfirm(false);
   }
+  
   function openModalExpense() {
     setIsOpenExpense(true);
   }
@@ -51,6 +53,7 @@ function App() {
   function closeModalExpense() {
     setIsOpenExpense(false);
   }
+
   function openModalBudget() {
     setIsOpenBudget(true);
   }
@@ -66,6 +69,7 @@ function App() {
   function closeModalSignup() {
     setIsOpen(false);
   }
+
   function openModalLogin() {
     setIsOpenLogin(true);
   }
@@ -74,9 +78,10 @@ function App() {
     setIsOpenLogin(false);
   }
 
+  // Styling for modals
   const customStyles = {
     overlay: {
-      backgroundColor: "rgb(58, 63, 69, 0.71)",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
     content: {
       top: "50%",
@@ -85,17 +90,16 @@ function App() {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      backgroundColor: "rgb(221,214,254)",
-      border: "2px solid #000000",
-      color: "#FFFFFF",
-      width: `${window.innerWidth > 420 ? "40%" : "95vw"} `,
-      // width: "40%",
+      backgroundColor: "#ffffff",
+      border: "2px solid #007BFF", // Blue border
+      color: "#000000",
+      width: `${window.innerWidth > 420 ? "40%" : "95vw"}`,
     },
   };
 
   const customStylesContact = {
     overlay: {
-      backgroundColor: "rgba(58, 63, 69, 0.71)",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
     content: {
       top: "50%",
@@ -104,9 +108,9 @@ function App() {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      backgroundColor: "rgb(221,214,254)",
-      border: "2px solid #FFFFFF",
-      color: "#FFFFFF",
+      backgroundColor: "#ffffff", 
+      border: "2px solid #007BFF", // Blue border
+      color: "#000000",
       width: "70%",
       height: "82%",
     },
@@ -114,7 +118,7 @@ function App() {
 
   return (
     <Scrollbars style={{ width: "100vw", height: "100vh" }}>
-      <div className="font-lexend overflow-x-hidden">
+      <div className="app-container" style={{ backgroundColor: "#f0f8ff" }}>
         <Routes>
           <Route
             path="/"
@@ -147,247 +151,86 @@ function App() {
                   openModalBudget={openModalBudget}
                 />
               }
-            ></Route>
-
-            <Route
-              path="analysis"
-              element={
-                <MainAnalysis
-                  setDeleteId={setDeleteId}
-                  openModalConfirm={openModalConfirm}
-                />
-              }
-            ></Route>
-
-            <Route
-              path="dailyspendanalysis"
-              element={<MainSpendAnalysis />}
-            ></Route>
-
-            <Route
-              path="daily"
-              element={
-                <MainDaily
-                  setDeleteId={setDeleteId}
-                  openModalConfirm={openModalConfirm}
-                />
-              }
-            ></Route>
+            />
+            <Route path="analysis" element={<MainAnalysis />} />
+            <Route path="dailyspendanalysis" element={<MainSpendAnalysis />} />
+            <Route path="daily" element={<MainDaily />} />
           </Route>
-
           <Route path="/contact-us" element={<Contact />} />
         </Routes>
+
+        {/* Signup Modal */}
         <Modal
           isOpen={modalIsOpen}
           onRequestClose={closeModalSignup}
           style={customStyles}
         >
-          <button onClick={closeModalSignup}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <button onClick={closeModalSignup} className="close-modal-btn">
+            &times;
           </button>
-          <Signup
-            closeModalSignup={closeModalSignup}
-            openModalLogin={openModalLogin}
-          />
+          <Signup closeModalSignup={closeModalSignup} openModalLogin={openModalLogin} />
         </Modal>
+
+        {/* Login Modal */}
         <Modal
           isOpen={modalIsOpenLogin}
           onRequestClose={closeModalLogin}
           style={customStyles}
         >
-          <button onClick={closeModalLogin}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <button onClick={closeModalLogin} className="close-modal-btn">
+            &times;
           </button>
-          <Login
-            closeModalLogin={closeModalLogin}
-            openModalSignup={openModalSignup}
-          />
+          <Login closeModalLogin={closeModalLogin} openModalSignup={openModalSignup} />
         </Modal>
 
+        {/* Add Expense Modal */}
         <Modal
           isOpen={modalIsOpenExpense}
           onRequestClose={closeModalExpense}
           style={customStyles}
         >
-          <button onClick={closeModalExpense}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <button onClick={closeModalExpense} className="close-modal-btn">
+            &times;
           </button>
           <AddExpense closeModalExpense={closeModalExpense} />
         </Modal>
+
+        {/* Budget Modal */}
+        <Modal
+          isOpen={modalIsOpenBudget}
+          onRequestClose={closeModalBudget}
+          style={customStyles}
+        >
+          <button onClick={closeModalBudget} className="close-modal-btn">
+            &times;
+          </button>
+          <SetBudget closeModalBudget={closeModalBudget} />
+        </Modal>
+
+        {/* Confirm Delete Modal */}
+        <Modal
+          isOpen={modalisOpenConfirm}
+          onRequestClose={closeModalConfirm}
+          style={customStyles}
+        >
+          <button onClick={closeModalConfirm} className="close-modal-btn">
+            &times;
+          </button>
+          <ConfirmDelete deleteId={deleteId} closeModalConfirm={closeModalConfirm} />
+        </Modal>
+
+        {/* Contact Us Modal */}
+        <Modal
+          isOpen={modalIsOpenContact}
+          onRequestClose={closeModalContact}
+          style={customStylesContact}
+        >
+          <button onClick={closeModalContact} className="close-modal-btn">
+            &times;
+          </button>
+          <Contact closeModalContact={closeModalContact} />
+        </Modal>
       </div>
-
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModalSignup}
-        style={customStyles}
-      >
-        <button onClick={closeModalSignup}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-        <Signup
-          closeModalSignup={closeModalSignup}
-          openModalLogin={openModalLogin}
-        />
-      </Modal>
-
-      <Modal
-        isOpen={modalIsOpenLogin}
-        onRequestClose={closeModalLogin}
-        style={customStyles}
-      >
-        <button onClick={closeModalLogin}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-        <Login
-          closeModalLogin={closeModalLogin}
-          openModalSignup={openModalSignup}
-        />
-      </Modal>
-
-      <Modal
-        isOpen={modalIsOpenExpense}
-        onRequestClose={closeModalExpense}
-        style={customStyles}
-      >
-        <button onClick={closeModalExpense}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-        <AddExpense closeModalExpense={closeModalExpense} />
-      </Modal>
-
-      <Modal
-        isOpen={modalIsOpenBudget}
-        onRequestClose={closeModalBudget}
-        style={customStyles}
-      >
-        <button onClick={closeModalBudget}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-        <SetBudget closeModalBudget={closeModalBudget} />
-      </Modal>
-
-      <Modal
-        isOpen={modalisOpenConfirm}
-        onRequestClose={closeModalConfirm}
-        style={customStyles}
-      >
-        <button onClick={closeModalConfirm}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-        <ConfirmDelete
-          deleteId={deleteId}
-          closeModalConfirm={closeModalConfirm}
-        />
-      </Modal>
-      <Modal
-        isOpen={modalIsOpenContact}
-        onRequestClose={closeModalContact}
-        style={customStylesContact}
-      >
-        <button onClick={closeModalContact}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-        <Contact closeModalContact={closeModalContact} />
-      </Modal>
     </Scrollbars>
   );
 }

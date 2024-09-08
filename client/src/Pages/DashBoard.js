@@ -49,15 +49,7 @@ export default function DashBoard(props) {
       <div className="lg:grid lg:grid-cols-5 h-screen font-lexend overflow-y-scroll overflow-x-clip">
         <div className="col-span-1 p-4 bg-white text-[#fc7b54]">
           <div className="lg:inline flex">
-            <Link to="/">
-              <ul className="cursor-pointer">
-                <li className="px-2 mt-2 py-1">
-                  <h1 className="lg:text-3xl text-lg font-bold">
-                    FinFlow
-                  </h1>
-                </li>
-              </ul>
-            </Link>
+            
             <ul className="lg:flex lg:flex-col mt-10 hidden">
               <Link to="/dashboard">
                 <li

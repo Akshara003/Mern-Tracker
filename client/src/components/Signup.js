@@ -25,7 +25,7 @@ export default function Signup(props) {
     setError({
       name: "",
       email: "",
-      passowrd: "",
+      password: "",
       confirmPassword: "",
     });
 
@@ -47,15 +47,16 @@ export default function Signup(props) {
       navigate("/dashboard");
     }
   };
+
   return (
     <div>
-      <div className="p-6 bg-violet-200 text-rp-black rounded-xl font-lexend">
-        <h1 className="font-bold text-2xl ">Sign Up</h1>
-        <p className="">Please fill this to create an account</p>
-        <hr className="my-4 "></hr>
-        <div className="grid grid-cols-12">
+      <div className="p-6 bg-white text-blue-900 rounded-xl font-sans shadow-md">
+        <h1 className="font-bold text-2xl text-center">Sign Up</h1>
+        <p className="text-center mb-4">Create your account</p>
+        <hr className="my-4"></hr>
+        <div className="grid grid-cols-12 mb-4">
           <label
-            htmlFor="email"
+            htmlFor="name"
             className="font-bold flex items-center col-span-4"
           >
             Name
@@ -69,13 +70,14 @@ export default function Signup(props) {
             }}
             type="text"
             placeholder="Enter Name"
-            className="p-2 m-2 inline-block outline-none bg-violet-100 col-span-8 rounded-sm placeholder-[#fc7b54]"
+            className="p-2 m-2 inline-block outline-none bg-blue-50 col-span-8 rounded-sm placeholder-blue-400"
           />
           <span className="text-sm text-red-500 col-start-5 col-span-8">
             {error.name}
           </span>
         </div>
-        <div className="grid grid-cols-12">
+
+        <div className="grid grid-cols-12 mb-4">
           <label
             htmlFor="email"
             className="font-bold flex items-center col-span-4"
@@ -91,14 +93,14 @@ export default function Signup(props) {
             }}
             type="text"
             placeholder="Enter Email"
-            className="p-2 m-2 inline-block outline-none  col-span-8 bg-violet-100 rounded-sm placeholder-[#fc7b54]"
+            className="p-2 m-2 inline-block outline-none bg-blue-50 col-span-8 rounded-sm placeholder-blue-400"
           />
           <span className="text-sm text-red-500 col-start-5 col-span-8">
             {error.email}
           </span>
         </div>
 
-        <div className="grid grid-cols-12 ">
+        <div className="grid grid-cols-12 mb-4">
           <label
             htmlFor="password"
             className="font-bold flex items-center col-span-4"
@@ -114,15 +116,14 @@ export default function Signup(props) {
             }}
             type="password"
             placeholder="Enter Password"
-            name="password"
-            className="p-2 m-2 inline-block outline-none  col-span-8 bg-violet-100 rounded-sm placeholder-[#fc7b54]"
+            className="p-2 m-2 inline-block outline-none bg-blue-50 col-span-8 rounded-sm placeholder-blue-400"
           ></input>
           <span className="text-sm text-red-500 col-start-5 col-span-8">
             {error.password}
           </span>
         </div>
 
-        <div className="grid grid-cols-12">
+        <div className="grid grid-cols-12 mb-4">
           <label
             htmlFor="confirm-password"
             className="font-bold flex items-center col-span-4"
@@ -138,39 +139,37 @@ export default function Signup(props) {
             }}
             type="password"
             placeholder="Confirm Password"
-            name="Confirm-Password"
-            className="p-2 m-2 inline-block outline-none bg-violet-100 col-span-8  rounded-sm placeholder-[#fc7b54]"
+            className="p-2 m-2 inline-block outline-none bg-blue-50 col-span-8 rounded-sm placeholder-blue-400"
           ></input>
           <span className="text-sm text-red-500 col-start-5 col-span-8">
             {error.confirmPassword}
           </span>
         </div>
 
-        <p className="">
-          By creating an account you agree to our{" "}
-          <a className="text-[#fc7b54]">terms and conditions</a>
-        </p>
-        <div className="mt-4">
+        
+
+        <div className="mt-4 text-center">
           {isLoading ? (
             <ReactLoading
               type="bubbles"
-              color="#F5A302"
+              color="#007BFF"
               height={50}
               width={50}
             />
           ) : (
             <button
               onClick={handleSignup}
-              className="font-bold p-3 rounded-xl border-2 border-[#fc7b54] text-[#fc7b54] hover:border-rp-black hover:text-rp-black hover:bg-[#fc7b54] hover:scale-110 transition delay-150 duration-200"
+              className="font-bold p-3 rounded-xl bg-blue-500 text-white hover:bg-blue-600 transition delay-150 duration-200"
             >
               Sign Up
             </button>
           )}
         </div>
-        <span className="flex justify-center py-2">
-          <span className="pr-1">Already have an Account, </span>
+
+        <span className="flex justify-center py-4">
+          <span className="pr-1">Already have an account? </span>
           <span
-            className="text-[#fc7b54] cursor-pointer"
+            className="text-blue-500 underline cursor-pointer"
             onClick={() => {
               props.closeModalSignup();
               props.openModalLogin();
